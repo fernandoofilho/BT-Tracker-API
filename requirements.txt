@@ -113,3 +113,4 @@ wurlitzer==3.1.1
 xxhash==3.5.0
 yellowbrick==1.5
 zipp==3.21.0
+mangum==0.17.0

@@ -1,0 +1,14 @@
+{
+    "functions": {
+      "index.py": {
+        "runtime": "vercel-python@0.3.6"
+      }
+    },
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "index.py"
+      }
+    ]
+  }
+  
