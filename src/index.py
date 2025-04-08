@@ -7,7 +7,6 @@ from helpers.processManyStates import ProcessManyStates
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session
 from serializer import Serializer
-from mangum import Mangum
 
 app = FastAPI(
     title="AI4GOOD Fire Risk API",
@@ -76,4 +75,3 @@ async def get_prediction(lat: float, lon: float, db: AsyncSession = Depends(get_
             {f"{entry['data_pas']}": [1] if count_ones > count_zeros else [0]}
         )
     return Serializer.serialize_data(response)
-handler = Mangum(app)
