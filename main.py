@@ -7,7 +7,8 @@ from helpers.processManyStates import ProcessManyStates
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session
 from serializer import Serializer
-
+import uvicorn
+import os
 app = FastAPI(
     title="AI4GOOD Fire Risk API",
     description="API para inferência de risco de fogo com dados climáticos e modelo AI",
@@ -75,3 +76,8 @@ async def get_prediction(lat: float, lon: float, db: AsyncSession = Depends(get_
             {f"{entry['data_pas']}": [1] if count_ones > count_zeros else [0]}
         )
     return Serializer.serialize_data(response)
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
