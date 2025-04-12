@@ -8,13 +8,22 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session
 from serializer import Serializer
 import uvicorn
+from fastapi.middleware.cors import CORSMiddleware
+
 import os
+
 app = FastAPI(
     title="AI4GOOD Fire Risk API",
     description="API para inferência de risco de fogo com dados climáticos e modelo AI",
     version="1.0.0",
 )
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 model_ai = Model()
 climate_api = ClimateApi()
 
